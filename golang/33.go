@@ -1,0 +1,65 @@
+package leetcode
+
+/*
+33. Search in Rotated Sorted Array
+Suppose an array sorted in ascending order is rotated at some pivot unknown to you beforehand.
+(i.e., [0,1,2,4,5,6,7] might become [4,5,6,7,0,1,2]).
+You are given a target value to search. If found in the array return its index, otherwise return -1.
+You may assume no duplicate exists in the array.
+Your algorithm's runtime complexity must be in the order of O(log n).
+
+Example 1:
+Input: nums = [4,5,6,7,0,1,2], target = 0
+Output: 4
+*/
+// RSA means Rotated Sorted Array
+func searchRSA(nums []int, target int) int {
+	l, r := 0, len(nums)-1
+	for l <= r {
+		m := (l + r) / 2
+		if nums[m] == target {
+			return m
+		} else if nums[m] > target {
+			if nums[r] > nums[m] || nums[l] > target {
+				r = m - 1
+			} else {
+				l = m + 1
+			}
+		} else {
+			if nums[l] < nums[m] || nums[r] > target {
+				l = m + 1
+			} else {
+				r = m - 1
+			}
+		}
+	}
+	return -1
+}
+
+func searchRSA2(nums []int, target int) int {
+	l, r := 0, len(nums)-1
+	for l <= r {
+		m := (l + r) / 2
+		if nums[m] == target {
+			return m
+			// nums[m:r]是有序的，此时只需要判断target是否在nums[m:r]内
+			// 如果在就左边边缘移动m+1，否则target在nums[l:m-1]内
+			// 所以把右边缘移到m-1
+		} else if nums[m] < nums[r] {
+			if target > nums[m] && target <= nums[r] {
+				l = m + 1
+			} else {
+				r = m - 1
+			}
+		} else {
+			// 此时，nums[l:m]是有序的，同样判断target是否在此范围
+			// 然后相应移动边缘即可。
+			if target >= nums[l] && target < nums[m] {
+				r = m - 1
+			} else {
+				l = m + 1
+			}
+		}
+	}
+	return -1
+}
