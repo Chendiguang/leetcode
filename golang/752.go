@@ -18,10 +18,10 @@ Every string in deadends and the string target will be a string of 4 digits from
 死锁，求出开锁的最小步数。
 */
 
-// func openLock(deadends []string, target string) int {
-// 	tmp, tar := [4]rune{}, [4]rune{}
-// 	for i, item := range target {
-// 		tar[i] = item
-// 	}
+func openLock(deadends []string, target string) int {
+	tmp, tar := [4]rune{}, [4]rune{}
+	for i, item := range target {
+		tar[i] = item
+	}
 
-// }
+}
