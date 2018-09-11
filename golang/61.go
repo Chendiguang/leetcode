@@ -58,7 +58,7 @@ func rotateRightAc(head *ListNode, k int) *ListNode {
 	// 遍历链表，得到链表长度l，链表首尾节点相连，形成一个环
 	p := head
 	l := 1
-	for head.Next != nil {
+	for p.Next != nil {
 		p = p.Next
 		l++
 	}
