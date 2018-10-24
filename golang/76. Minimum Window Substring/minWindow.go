@@ -27,9 +27,13 @@ func minWindow(s string, t string) string {
 		// 在遍历过程中，对映射mp的元素进行判断
 		mp[s[end]]--
 		if mp[s[end]] >= 0 {
+			// 表明匹配到一个字符
 			lt--
 		}
+		// 更新右指针
 		end++
+		// 当前窗口以全部包含t中的字符，更新左边界，
+		// 更新最小窗口的大小gap和最小窗口的左边界
 		// lt=0时，符合t长度要求了，开始更新左边界start
 		for lt == 0 {
 			if end-start < gap {
