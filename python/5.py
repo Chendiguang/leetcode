@@ -1,3 +1,12 @@
+def median(A, B):
+    m, n = len(A), len(B)
+    if m > n:
+        A, B, m, n = B, A, n, m
+    if m == 0:
+        raise ValueError
+    
+    imin, imax, half_len = 0, m, (m + n + 1) / 2
+
 def longestPalindrome(string):
     if len(string) <= 1:
         return string

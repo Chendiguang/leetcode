@@ -54,14 +54,15 @@ func removeNthFromEnd(head *ListNode, n int) *ListNode {
 	if head == nil || n <= 0 {
 		return head
 	}
-
+	// 利用一个虚拟节点，减少边界条件的判断
 	dummy := ListNode{0, head}
 	l, r := &dummy, &dummy
 
+	// r 先走n步
 	for i := 0; r != nil && i < n+1; i++ {
 		r = r.Next
 	}
-
+	// l, r 一起往后走，直到r走到链表末尾
 	for r != nil {
 		l, r = l.Next, r.Next
 	}
